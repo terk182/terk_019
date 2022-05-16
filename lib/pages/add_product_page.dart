@@ -31,7 +31,7 @@ class _AddProductPageState extends State<AddProductPage> {
       if (pickedFile != null) {
         _image = File(pickedFile.path);
         // ignore: avoid_print
-        // print(_image);
+        print(_image);
       } else {
         // ignore: avoid_print
         print('No image selected.');

@@ -43,8 +43,8 @@ class _StoreDetailPageState extends State<StoreDetailPage> {
       automaticallyImplyLeading: false,
       leading: IconButton(
           onPressed: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => const RootApp()));
+            Navigator.push(context,
+                MaterialPageRoute(builder: (context) => const RootApp()));
           },
           icon: SvgPicture.asset(
             "assets/icons/arrow_back_icon.svg",
@@ -282,7 +282,7 @@ class _StoreDetailPageState extends State<StoreDetailPage> {
                                   children: [
                                     // ignore: sized_box_for_whitespace
                                     Container(
-                                      width: (size.width * 0.75) - 40,
+                                      width: (size.width * 0.75) - 50,
                                       height: 80,
                                       child: Column(
                                         crossAxisAlignment:

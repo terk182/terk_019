@@ -252,7 +252,7 @@ class _BookingDetailPageState extends State<BookingDetailPage> {
                                   children: [
                                     // ignore: sized_box_for_whitespace
                                     Container(
-                                      width: (size.width * 0.75) - 40,
+                                      width: (size.width * 0.75) - 50,
                                       height: 80,
                                       child: Column(
                                         crossAxisAlignment:
@@ -273,7 +273,8 @@ class _BookingDetailPageState extends State<BookingDetailPage> {
                                               ),
                                               Text(
                                                 list[index].detail,
-                                                style: const TextStyle(fontSize: 16),
+                                                style: const TextStyle(
+                                                    fontSize: 12),
                                               )
                                             ],
                                           )
