@@ -9,3 +9,4 @@ String imgs = "";
 String itemnames = "";
 String promotionuid = "";
 double amount = 0;
+String imageA = "";

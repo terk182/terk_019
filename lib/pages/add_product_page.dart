@@ -2,8 +2,6 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:terk_019/data/variables.dart';
-
-import 'package:terk_019/services/upload.dart';
 import 'package:terk_019/theme/colors.dart';
 import 'package:terk_019/theme/padding.dart';
 import 'package:image_picker/image_picker.dart';
@@ -16,8 +14,8 @@ class AddProductPage extends StatefulWidget {
 }
 
 class _AddProductPageState extends State<AddProductPage> {
-  late File _image;
-  final picker = ImagePicker();
+  XFile? _image;
+  ImagePicker picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -26,17 +24,19 @@ class _AddProductPageState extends State<AddProductPage> {
   }
 
   Future getImage() async {
-    var pickedFile = await picker.pickImage(source: ImageSource.gallery);
-    setState(() {
-      if (pickedFile != null) {
-        _image = File(pickedFile.path);
-        // ignore: avoid_print
-        print(_image);
-      } else {
-        // ignore: avoid_print
-        print('No image selected.');
-      }
-    });
+    XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
+    // print(pickedFile?.path);
+    imageA = (pickedFile?.path).toString();
+    // setState(() {
+    //   if (pickedFile != null) {
+    //     // _image = pickedFile?.path;
+    //     // ignore: avoid_print
+    //     // print(_image);
+    //   } else {
+    //     // ignore: avoid_print
+    //     print('No image selected.');
+    //   }
+    // });
   }
 
   Widget getBody() {
@@ -240,6 +240,7 @@ class _AddProductPageState extends State<AddProductPage> {
             const SizedBox(
               height: 20,
             ),
+            Text(imageA),
             InkWell(
               onTap: () {
                 getImage();
@@ -277,11 +278,13 @@ class _AddProductPageState extends State<AddProductPage> {
             InkWell(
               onTap: () async {
                 if (_formKey.currentState!.validate()) {
-                  //File('assets/images/promotion.jpg')
+                  print(imageA);
+                  var tt = File(
+                      'data/user/0/com.example.terk_019/cache/image_picker6536985953189799270.jpg');
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
-                  uploadImage(_image, customerName, customerUid, productname,
-                      productcode, price, expirationdate, warrantydate);
+                  //  uploadImage(_image, customerName, customerUid, productname,
+                  //    productcode, price, expirationdate, warrantydate);
                 } else {}
               },
               child: Container(
