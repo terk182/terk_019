@@ -15,6 +15,7 @@ class AddProductPage extends StatefulWidget {
 
 class _AddProductPageState extends State<AddProductPage> {
   XFile? _image;
+  String ii = "";
   ImagePicker picker = ImagePicker();
   @override
   Widget build(BuildContext context) {
@@ -26,17 +27,18 @@ class _AddProductPageState extends State<AddProductPage> {
   Future getImage() async {
     XFile? pickedFile = await picker.pickImage(source: ImageSource.gallery);
     // print(pickedFile?.path);
-    imageA = (pickedFile?.path).toString();
-    // setState(() {
-    //   if (pickedFile != null) {
-    //     // _image = pickedFile?.path;
-    //     // ignore: avoid_print
-    //     // print(_image);
-    //   } else {
-    //     // ignore: avoid_print
-    //     print('No image selected.');
-    //   }
-    // });
+
+    setState(() {
+      if (pickedFile != null) {
+        ii = (pickedFile.path).toString();
+        // _image = pickedFile?.path;
+        // ignore: avoid_print
+        // print(_image);
+      } else {
+        // ignore: avoid_print
+        print('No image selected.');
+      }
+    });
   }
 
   Widget getBody() {
@@ -240,7 +242,7 @@ class _AddProductPageState extends State<AddProductPage> {
             const SizedBox(
               height: 20,
             ),
-            Text(imageA),
+            Text(ii),
             InkWell(
               onTap: () {
                 getImage();
@@ -278,9 +280,8 @@ class _AddProductPageState extends State<AddProductPage> {
             InkWell(
               onTap: () async {
                 if (_formKey.currentState!.validate()) {
-                  print(imageA);
-                  var tt = File(
-                      'data/user/0/com.example.terk_019/cache/image_picker6536985953189799270.jpg');
+                  var tt = File(ii);
+                  print(tt);
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
                   //  uploadImage(_image, customerName, customerUid, productname,
