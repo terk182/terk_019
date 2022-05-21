@@ -291,6 +291,7 @@ class _AddProductPageState extends State<AddProductPage> {
               child: Container(
                 width: 141,
                 height: 45,
+                
                 decoration: BoxDecoration(
                     color: primary, borderRadius: BorderRadius.circular(30)),
                 child: Row(
