@@ -24,9 +24,7 @@ uploadImage(
   request.fields['expiration_date'] = expirationdate;
   request.fields['warranty_date'] = warrantydate;
 
-  var picture = http.MultipartFile.fromBytes(
-      'image', (await rootBundle.load(file.path)).buffer.asUint8List(),
-      filename: 'terk.jpg');
+  var picture = await http.MultipartFile.fromPath("image", file.path);
 
   request.files.add(picture);
 

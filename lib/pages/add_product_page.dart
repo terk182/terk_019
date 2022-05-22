@@ -14,6 +14,7 @@ class AddProductPage extends StatefulWidget {
 }
 
 class _AddProductPageState extends State<AddProductPage> {
+  // ignore: unused_field
   XFile? _image;
   String ii = "";
   ImagePicker picker = ImagePicker();
@@ -45,10 +46,15 @@ class _AddProductPageState extends State<AddProductPage> {
     final GlobalKey<FormState> _formKey = GlobalKey();
     customerName = "demo";
     customerUid = "demo";
+    // ignore: unused_local_variable
     String productname = "";
+    // ignore: unused_local_variable
     String productcode = "";
+    // ignore: unused_local_variable
     String price = "";
+    // ignore: unused_local_variable
     String expirationdate = "";
+    // ignore: unused_local_variable
     String warrantydate = "";
     return Padding(
       padding: const EdgeInsets.all(mainPadding),
@@ -281,6 +287,7 @@ class _AddProductPageState extends State<AddProductPage> {
               onTap: () async {
                 if (_formKey.currentState!.validate()) {
                   var tt = File(ii);
+                  // ignore: avoid_print
                   print(tt);
                   // If the form is valid, display a snackbar. In the real world,
                   // you'd often call a server or save the information in a database.
