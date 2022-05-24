@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:terk_019/services/upload.dart';
-import 'package:path/path.dart';
+
 
 class MyApptt extends StatelessWidget {
   const MyApptt({Key? key}) : super(key: key);
@@ -113,14 +113,14 @@ class _MyHomePageState extends State<MyHomePage> {
             image != null
                 ? Image.file(image!)
                 : const Text("No image selected"),
-            const SizedBox(
-              height: 40,
-            ),
+           
             InkWell(
               onTap: () async {
                 // ignore: avoid_print
                 // var terk = File('assets/images/promotion.jpg');
+                // ignore: avoid_print
                 print(imageTemp);
+                // ignore: unused_local_variable
                 String fileName = imageTemp.path.split('/').last;
                 //String fileName = basename(imageTemp.path);
                 uploadImage(imageTemp, "pp00pp", "pp00pp", "pp00pp", "pp00pp",

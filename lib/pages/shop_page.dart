@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_literals_to_create_immutables
+
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -21,7 +23,7 @@ class ShopPage extends StatefulWidget {
 class _ShopPageState extends State<ShopPage> {
   @override
   void initState() {
-  //  print(customerName);
+    //  print(customerName);
     super.initState();
   }
 
@@ -31,7 +33,8 @@ class _ShopPageState extends State<ShopPage> {
     return Scaffold(
       backgroundColor: textWhite,
       appBar: PreferredSize(
-          child: MainAppBar(size: size), preferredSize: const Size.fromHeight(80)),
+          child: MainAppBar(size: size),
+          preferredSize: const Size.fromHeight(80)),
       bottomNavigationBar: getFooter(),
       body: getBody(),
     );
@@ -43,6 +46,63 @@ class _ShopPageState extends State<ShopPage> {
     return SingleChildScrollView(
       child: Column(
         children: [
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              TextButton(
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.black45),
+                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.hovered)) {
+                          return Colors.blue.withOpacity(0.04);
+                        }
+                        if (states.contains(MaterialState.focused) ||
+                            states.contains(MaterialState.pressed)) {
+                          return Colors.blue.withOpacity(0.12);
+                        }
+                        return null; // Defer to the widget's default.
+                      },
+                    ),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.black12),
+                  ),
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, '/add_product_page');
+                  },
+                  child: const Text('add product')),
+              const SizedBox(
+                width: 10,
+              ),
+              TextButton(
+                  style: ButtonStyle(
+                    foregroundColor:
+                        MaterialStateProperty.all<Color>(Colors.black45),
+                    overlayColor: MaterialStateProperty.resolveWith<Color?>(
+                      (Set<MaterialState> states) {
+                        if (states.contains(MaterialState.hovered)) {
+                          return Colors.blue.withOpacity(0.04);
+                        }
+                        if (states.contains(MaterialState.focused) ||
+                            states.contains(MaterialState.pressed)) {
+                          return Colors.blue.withOpacity(0.12);
+                        }
+                        return null; // Defer to the widget's default.
+                      },
+                    ),
+                    backgroundColor:
+                        MaterialStateProperty.all<Color>(Colors.black12),
+                  ),
+                  onPressed: () {
+                    Navigator.popAndPushNamed(context, '/add_product_page');
+                  },
+                  child: const Text('add promotion')),
+              const SizedBox(
+                width: 10,
+              ),
+            ],
+          ),
           Container(
             width: double.infinity,
             decoration: const BoxDecoration(color: light),
@@ -53,43 +113,49 @@ class _ShopPageState extends State<ShopPage> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   FutureBuilder(
-                      future: Getpromotionlist().uid("62345c9c5d1ba"),
+                      future: Getpromotionlist().uid(customerUid),
                       builder: (BuildContext context,
                           AsyncSnapshot<dynamic> snapshot2) {
                         if (snapshot2.connectionState == ConnectionState.done) {
                           var result2 = snapshot2.data;
-                          return Column(
-                            children: List.generate(result2.promotion.length,
-                                (index) {
-                              return Padding(
-                                  padding: const EdgeInsets.only(
-                                      bottom: bottomMainPadding),
-                                  child: GestureDetector(
-                                    onTap: () {
-                                      promotionuid =
-                                          result2.promotion[index].promotionUid;
-                                      Navigator.of(context).pushNamed(
-                                        "/qr_promotion",
-                                      );
-                                    },
-                                    // ignore: avoid_unnecessary_containers
-                                    child: Container(
-                                      child: StoreCard(
-                                        width: size.width - (mainPadding * 2),
-                                        name: result2
-                                            .promotion[index].promotionName,
-                                        img: result2.promotion[index].imgPath,
-                                        isOpen: true,
-                                        tags: result2
-                                            .promotion[index].promotionUid,
-                                        deliveryTime: result2
-                                            .promotion[index].startDate
-                                            .toString(),
+                          if (result2 != null) {
+                            return Column(
+                              children: List.generate(result2.promotion.length,
+                                  (index) {
+                                return Padding(
+                                    padding: const EdgeInsets.only(
+                                        bottom: bottomMainPadding),
+                                    child: GestureDetector(
+                                      onTap: () {
+                                        promotionuid = result2
+                                            .promotion[index].promotionUid;
+                                        Navigator.of(context).pushNamed(
+                                          "/qr_promotion",
+                                        );
+                                      },
+                                      // ignore: avoid_unnecessary_containers
+                                      child: Container(
+                                        child: StoreCard(
+                                          width: size.width - (mainPadding * 2),
+                                          name: result2
+                                              .promotion[index].promotionName,
+                                          img: result2.promotion[index].imgPath,
+                                          isOpen: true,
+                                          tags: result2
+                                              .promotion[index].promotionUid,
+                                          deliveryTime: result2
+                                              .promotion[index].startDate
+                                              .toString(),
+                                        ),
                                       ),
-                                    ),
-                                  ));
-                            }),
-                          );
+                                    ));
+                              }),
+                            );
+                          } else {
+                            return Column(
+                              children: [const Text("no data")],
+                            );
+                          }
                         }
                         return const LinearProgressIndicator();
                       }),

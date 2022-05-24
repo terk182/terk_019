@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:terk_019/pages/add_booking_page.dart';
+import 'package:terk_019/pages/add_product_page.dart';
 import 'package:terk_019/pages/home_page.dart';
 import 'package:terk_019/pages/login_page.dart';
 import 'package:terk_019/pages/qr_generate.dart';
@@ -35,6 +36,8 @@ Route<dynamic> generateRoute(RouteSettings setting) {
       return MaterialPageRoute(builder: (context) => const walletpage());
     case '/add_booking_page':
       return MaterialPageRoute(builder: (context) => const Addbookingpage());
+    case '/add_product_page':
+      return MaterialPageRoute(builder: (context) => const AddProductPage());
 
     default:
       return MaterialPageRoute(
